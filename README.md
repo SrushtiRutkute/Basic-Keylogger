@@ -29,14 +29,15 @@ A web app that records keystrokes only with user consent and allows secure downl
 
 
 
-*## File Structure*
-
+## File Structure
+```
 keystroke-demo/
 ├── app.py
 ├── requirements.txt
 └── templates/
     ├── base_home.html
     └── consent_logger.html
+```
 
 
 
