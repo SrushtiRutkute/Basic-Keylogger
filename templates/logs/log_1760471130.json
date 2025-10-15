@@ -1,0 +1,190 @@
+{
+  "consent": true,
+  "meta": {
+    "generated": "2025-10-14T19:45:16.554Z"
+  },
+  "entries": [
+    {
+      "type": "keydown",
+      "key": "g",
+      "code": "KeyG",
+      "time": 5532,
+      "value": ""
+    },
+    {
+      "type": "keyup",
+      "key": "g",
+      "code": "KeyG",
+      "time": 5633,
+      "value": "g"
+    },
+    {
+      "type": "keydown",
+      "key": "o",
+      "code": "KeyO",
+      "time": 5718,
+      "value": "g"
+    },
+    {
+      "type": "keyup",
+      "key": "o",
+      "code": "KeyO",
+      "time": 5814,
+      "value": "go"
+    },
+    {
+      "type": "keydown",
+      "key": "o",
+      "code": "KeyO",
+      "time": 5914,
+      "value": "go"
+    },
+    {
+      "type": "keyup",
+      "key": "o",
+      "code": "KeyO",
+      "time": 5994,
+      "value": "goo"
+    },
+    {
+      "type": "keydown",
+      "key": "d",
+      "code": "KeyD",
+      "time": 6586,
+      "value": "goo"
+    },
+    {
+      "type": "keyup",
+      "key": "d",
+      "code": "KeyD",
+      "time": 6736,
+      "value": "good"
+    },
+    {
+      "type": "keydown",
+      "key": " ",
+      "code": "Space",
+      "time": 8236,
+      "value": "good"
+    },
+    {
+      "type": "keyup",
+      "key": " ",
+      "code": "Space",
+      "time": 8402,
+      "value": "good "
+    },
+    {
+      "type": "keydown",
+      "key": "n",
+      "code": "KeyN",
+      "time": 14328,
+      "value": "good "
+    },
+    {
+      "type": "keyup",
+      "key": "n",
+      "code": "KeyN",
+      "time": 14425,
+      "value": "good n"
+    },
+    {
+      "type": "keydown",
+      "key": "i",
+      "code": "KeyI",
+      "time": 14950,
+      "value": "good n"
+    },
+    {
+      "type": "keyup",
+      "key": "i",
+      "code": "KeyI",
+      "time": 15086,
+      "value": "good ni"
+    },
+    {
+      "type": "keydown",
+      "key": "g",
+      "code": "KeyG",
+      "time": 15419,
+      "value": "good ni"
+    },
+    {
+      "type": "keyup",
+      "key": "g",
+      "code": "KeyG",
+      "time": 15537,
+      "value": "good nig"
+    },
+    {
+      "type": "keydown",
+      "key": "h",
+      "code": "KeyH",
+      "time": 16272,
+      "value": "good nig"
+    },
+    {
+      "type": "keyup",
+      "key": "h",
+      "code": "KeyH",
+      "time": 16384,
+      "value": "good nigh"
+    },
+    {
+      "type": "keydown",
+      "key": "t",
+      "code": "KeyT",
+      "time": 16487,
+      "value": "good nigh"
+    },
+    {
+      "type": "keyup",
+      "key": "t",
+      "code": "KeyT",
+      "time": 16620,
+      "value": "good night"
+    },
+    {
+      "type": "keydown",
+      "key": "t",
+      "code": "KeyT",
+      "time": 16733,
+      "value": "good night"
+    },
+    {
+      "type": "keyup",
+      "key": "t",
+      "code": "KeyT",
+      "time": 16852,
+      "value": "good nightt"
+    },
+    {
+      "type": "keydown",
+      "key": "Shift",
+      "code": "ShiftLeft",
+      "time": 19096,
+      "value": "good nightt"
+    },
+    {
+      "type": "keydown",
+      "key": "!",
+      "code": "Digit1",
+      "time": 19386,
+      "value": "good nightt"
+    },
+    {
+      "type": "keyup",
+      "key": "Shift",
+      "code": "ShiftLeft",
+      "time": 19502,
+      "value": "good nightt!"
+    },
+    {
+      "type": "keyup",
+      "key": "1",
+      "code": "Digit1",
+      "time": 19515,
+      "value": "good nightt!"
+    }
+  ]
+}

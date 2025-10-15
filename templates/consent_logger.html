@@ -1,0 +1,147 @@
+{% extends "base_home.html" %}    
+{% block body %}  
+<div class="box">      
+  <h2>Consented Keystroke Capture (Demo)</h2>      
+  <p class="small">This demo records everything typed into the box below <strong>only</strong> while logging is enabled. Do not use to record anyone without their explicit consent.</p>    
+
+  <label style="display:block; margin-bottom:0.5rem;">      
+    <input id="consentBox" type="checkbox"> I give informed consent to capture keystrokes in this demo.      
+  </label>    
+
+  <div style="margin:0.5rem 0;">      
+    <button id="startBtn" disabled>Start logging</button>      
+    <button id="stopBtn" disabled>Stop logging</button>      
+    <button id="downloadBtn" disabled>Download log</button>      
+    <button id="uploadBtn" disabled>Upload log (admin token required)</button>      
+    <button id="clearBtn">Clear log</button>      
+  </div>    
+
+  <textarea id="captureArea" rows="8" style="width:100%; box-sizing:border-box; padding:0.6rem;"      
+    placeholder="Click here and type. Logging must be enabled to capture keystrokes."></textarea>    
+
+  <p id="status" class="small" style="margin-top:0.5rem;">Log entries: 0</p>      
+</div>  
+
+<script>      
+(function(){      
+  const consent = document.getElementById('consentBox');      
+  const startBtn = document.getElementById('startBtn');      
+  const stopBtn = document.getElementById('stopBtn');      
+  const downloadBtn = document.getElementById('downloadBtn');      
+  const uploadBtn = document.getElementById('uploadBtn');      
+  const clearBtn = document.getElementById('clearBtn');      
+  const area = document.getElementById('captureArea');      
+  const status = document.getElementById('status');    
+
+  let logging = false;  
+  let log = [];  
+
+  consent.addEventListener('change', () => {
+    startBtn.disabled = !consent.checked;
+    uploadBtn.disabled = !consent.checked || log.length === 0;
+  });
+
+  function updateStatus() {
+    status.textContent = `Log entries: ${log.length}` + (logging ? ' (logging active)' : '');
+  }
+
+  function onKey(ev) {
+    if (!logging) return;
+    const entry = {
+      type: ev.type,
+      key: ev.key,
+      code: ev.code,
+      time: performance.now()|0,
+      value: area.value
+    };
+    log.push(entry);
+    if (log.length > 50000) log.shift();
+    updateStatus();
+  }
+
+  startBtn.addEventListener('click', () => {
+    if (!consent.checked) { alert('Please check consent first.'); return; }
+    logging = true;
+    startBtn.disabled = true;
+    stopBtn.disabled = false;
+    downloadBtn.disabled = false;
+    uploadBtn.disabled = !consent.checked;
+    area.addEventListener('keydown', onKey);
+    area.addEventListener('keyup', onKey);
+    updateStatus();
+  });
+
+  stopBtn.addEventListener('click', () => {
+    logging = false;
+    startBtn.disabled = false;
+    stopBtn.disabled = true;
+    area.removeEventListener('keydown', onKey);
+    area.removeEventListener('keyup', onKey);
+    updateStatus();
+  });
+
+  clearBtn.addEventListener('click', () => {
+    if (!confirm('Clear the current log?')) return;
+    log = [];
+    area.value='';
+    logging=false;
+    startBtn.disabled=!consent.checked;
+    stopBtn.disabled=true;
+    updateStatus();
+    uploadBtn.disabled = true;
+    downloadBtn.disabled = true;
+  });
+
+  downloadBtn.addEventListener('click', () => {
+    if (log.length === 0) { alert('No log data to download.'); return; }
+    const blob = new Blob([
+      JSON.stringify({
+        meta: { generated: new Date().toISOString() },
+        entries: log
+      }, null, 2)
+    ], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'keystroke_log.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  });
+
+  uploadBtn.addEventListener('click', async () => {
+    if (!consent.checked) { alert('Consent required to upload'); return; }
+    if (log.length === 0) { alert('No log to upload'); return; }
+    if (!confirm('Upload log to server? This will send the captured events to the server.')) return;
+
+    const payload = { consent: true, meta: {generated: new Date().toISOString()}, entries: log };
+    try {
+      const token = prompt('Enter admin token to upload (for demo):');
+      const resp = await fetch('/upload_log', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Admin-Token': token
+        },
+        body: JSON.stringify(payload)
+      });
+      const j = await resp.json();
+      if (resp.ok) {
+        alert('Upload successful: ' + (j.filename || 'saved'));
+      } else {
+        alert('Upload failed: ' + (j.message || resp.status));
+      }
+    } catch (e) {
+      alert('Upload error: ' + e.message);
+    }
+  });
+
+  startBtn.disabled = true;
+  stopBtn.disabled = true;
+  downloadBtn.disabled = true;
+  uploadBtn.disabled = true;
+  updateStatus();
+})();
+</script>  
+{% endblock %}

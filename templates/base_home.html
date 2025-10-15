@@ -1,0 +1,74 @@
+<!doctype html>
+<html>      
+<head>      
+  <meta charset="utf-8">      
+  <title>Keystroke Demo - Consent Logger</title>      
+  <meta name="viewport" content="width=device-width,initial-scale=1">      
+  <style>      
+    body { 
+      font-family: system-ui, -apple-system, Roboto, "Segoe UI", Arial; 
+      max-width: 900px; 
+      margin: 2rem auto; 
+      padding: 1rem; 
+    }      
+    input[type=text], textarea { 
+      width: 100%; 
+      padding: .6rem; 
+      font-size: 1rem; 
+      box-sizing: border-box; 
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }      
+    .box { 
+      border: 2px solid #cc0000;      /* red border */
+      padding: 1rem; 
+      border-radius: 8px; 
+      margin-top: 1rem; 
+      width:100%; 
+      max-width:900px; 
+      box-sizing:border-box;
+      background-color: #f9f9f9;      /* very light grey background */
+    }      
+    button { 
+      padding: .5rem 1rem; 
+      margin-right: .5rem; 
+      background-color: #ff6666;      /* red button */
+      color: white; 
+      border: none; 
+      border-radius: 4px; 
+      cursor: pointer;
+    }
+    button:disabled {
+      background-color: #ffb3b3; 
+      cursor: not-allowed;
+    }
+    .small { 
+      font-size: .9rem; 
+      color: #555; 
+    }      
+    nav a { 
+      margin-right: .6rem; 
+      color: #cc0000;       /* red links */
+      text-decoration: none; 
+      font-weight: bold;
+    }      
+  </style>      
+</head>      
+<body>      
+  <h1>Keystroke Demo</h1>      
+  <nav>      
+    <a href="{{ url_for('home') }}">Home</a> |      
+    <a href="{{ url_for('consent_logger') }}">Consented Logger</a>      
+  </nav>    
+  <hr>    
+  <div class="box">      
+    <h2>About this demo</h2>      
+    <p class="small">      
+      This site demonstrates an ethical, consented keystroke capture tool. Nothing is recorded unless a user checks the consent box      
+      and starts logging. Logs remain on the server only if the user chooses to upload them and an admin token is provided.      
+    </p>      
+    <p class="small"><strong>Important:</strong> Do not use this to record other people without their explicit informed consent. Covert logging is illegal and unethical.</p>      
+  </div>  
+  {% block body %}{% endblock %}  
+</body>      
+</html>
