@@ -15,17 +15,17 @@ A web app that records keystrokes only with user consent and allows secure downl
 
 ## Commands to Run
 
-Create virtual environment: python -m venv venv
+* Create virtual environment: python -m venv venv
 
-Activate virtual environment (Windows): venv\Scripts\activate
+* Activate virtual environment (Windows): venv\Scripts\activate
 
-(Optional) Set admin token: set ADMIN_TOKEN=secret-demo-token
+* (Optional) Set admin token: set ADMIN_TOKEN=secret-demo-token
 
-Navigate to project folder: cd path\to\keystroke-demo
+* Navigate to project folder: cd path\to\keystroke-demo
 
-Run the app: python app.py
+* Run the app: python app.py
 
-Open in browser: http://127.0.0.1:5000
+* Open in browser: http://127.0.0.1:5000
 
 
 
